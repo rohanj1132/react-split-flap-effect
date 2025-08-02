@@ -1,0 +1,11 @@
+This library renders react compatible split flap displays.
+
+- The `example/` folder contains only usage demos and examples; it is not part of the library source.
+- The root `src/` directory holds the actual split-flap React library code.
+- The examples link to the built library source—so to see updates in examples, you must rebuild the library.
+- Configuration files like `rollup.config.js` and `package.json` at the root level apply to the library itself.
+- Changes in `example/` are specific to the demo and do not affect the core library.
+- **Never edit** the following directories or files directly:
+  - `dist/`
+  - `build/`
+  - `node_modules/`
