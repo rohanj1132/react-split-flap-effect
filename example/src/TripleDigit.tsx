@@ -39,7 +39,7 @@ export const TripleDigit: React.FC = () => {
             className="singleDigitFlapper"
             value={value}
             chars={"0123456789"}
-            words={false}
+            words={[]}
             length={3}
             timing={150}
             hinge={true}
