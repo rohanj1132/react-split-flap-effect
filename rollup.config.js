@@ -9,7 +9,7 @@ import url from "rollup-plugin-url";
 
 import postcssPresetEnv from "postcss-preset-env";
 
-import pkg from "./package.json" assert { type: "json" };
+import pkg from "./package.json" with { type: "json" };
 
 export default {
   input: "src/index.ts",
