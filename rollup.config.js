@@ -1,3 +1,4 @@
+import typescript from "@rollup/plugin-typescript";
 import svgr from "@svgr/rollup";
 import babel from "rollup-plugin-babel";
 import commonjs from "rollup-plugin-commonjs";
@@ -8,7 +9,7 @@ import url from "rollup-plugin-url";
 
 import postcssPresetEnv from "postcss-preset-env";
 
-import pkg from "./package.json";
+import pkg from "./package.json" assert { type: "json" };
 
 export default {
   input: "src/index.ts",
@@ -41,9 +42,16 @@ export default {
     resolve({
       extensions: [".js", ".jsx", ".ts", ".tsx"]
     }),
+    typescript({
+      tsconfig: "./tsconfig.json",
+      declaration: true,
+      declarationDir: "dist",
+      exclude: ["**/*.test.tsx", "**/*.test.ts", "src/setupTests.ts"]
+    }),
     babel({
       exclude: "node_modules/**",
-      extensions: [".js", ".jsx", ".ts", ".tsx"]
+      extensions: [".js", ".jsx"],
+      presets: ["@babel/preset-react"]
     }),
     commonjs()
   ]
