@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { FlapStack } from "./FlapStack";
 import { Presets } from "./Presets";
 import { FlapStackImproved } from "./improved/FlapStackImproved";
 
 const Modes = {
   Numeric: "num",
   Alphanumeric: "alpha",
-  Words: "words"
+  Words: "words",
 } as const;
 
-type Mode = typeof Modes[keyof typeof Modes];
+type Mode = (typeof Modes)[keyof typeof Modes];
 
 interface RenderProps {
   id?: string;
@@ -32,7 +31,6 @@ export interface FlapDisplayProps {
   timing?: number;
   hinge?: boolean;
   render?: (props: RenderProps) => React.ReactElement;
-  useImproved?: boolean;
   // Additional props that will be passed to FlapStack
   [key: string]: any;
 }
@@ -40,7 +38,7 @@ export interface FlapDisplayProps {
 const splitChars = (v: string | number): string[] =>
   String(v)
     .split("")
-    .map(c => c.toUpperCase());
+    .map((c) => c.toUpperCase());
 
 const padValue = (
   v: string,
@@ -67,7 +65,6 @@ export const FlapDisplay: React.FC<FlapDisplayProps> = ({
   render,
   timing = 300,
   hinge = true,
-  useImproved = true,
   ...restProps
 }) => {
   const [stack, setStack] = useState<string[]>([]);
@@ -110,11 +107,9 @@ export const FlapDisplay: React.FC<FlapDisplayProps> = ({
   }, [value, chars, words, length, padChar, padMode]);
 
   useEffect(() => {
-    const StackComponent = useImproved ? FlapStackImproved : FlapStack;
-
     setChildren(
       digits.map((digit, i) => (
-        <StackComponent
+        <FlapStackImproved
           key={i}
           stack={stack}
           value={digit}
@@ -125,15 +120,7 @@ export const FlapDisplay: React.FC<FlapDisplayProps> = ({
         />
       ))
     );
-  }, [
-    digits,
-    stack,
-    mode,
-    timing,
-    hinge,
-    useImproved,
-    ...Object.values(restProps)
-  ]);
+  }, [digits, stack, mode, timing, hinge, ...Object.values(restProps)]);
 
   return render ? (
     render({ id, className, css, ...restProps, children })

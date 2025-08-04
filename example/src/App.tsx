@@ -15,16 +15,16 @@ const Words = [
   "New York",
   "New Haven",
   "Providence",
-  "Boston"
+  "Boston",
 ] as const;
 
 const Modes = {
   Numeric: 0,
   Alphanumeric: 1,
-  Words: 2
+  Words: 2,
 } as const;
 
-type Mode = typeof Modes[keyof typeof Modes];
+type Mode = (typeof Modes)[keyof typeof Modes];
 type PadMode = "auto" | "start" | "end";
 
 export const App: React.FC = () => {
@@ -42,7 +42,6 @@ export const App: React.FC = () => {
   const [padMode, setPadMode] = useState<PadMode>("auto");
   const [value, setValue] = useState("");
   const [hinge, setHinge] = useState(true);
-  const [useImproved, setUseImproved] = useState(true);
 
   const modeRef = useRef(mode);
   modeRef.current = mode;
@@ -121,26 +120,10 @@ export const App: React.FC = () => {
           hinge={hinge}
           padChar={padChar}
           padMode={padMode}
-          useImproved={useImproved}
         />
       </div>
 
-      <form onSubmit={e => e.preventDefault()}>
-        <div className="row">
-          <div className="full">
-            <h2>Animation Mode</h2>
-          </div>
-          <div className="full">
-            <input
-              type="checkbox"
-              id="useImproved"
-              checked={useImproved}
-              onChange={e => setUseImproved(e.target.checked)}
-            />
-            <label htmlFor="useCss">Use CSS animations (GPU-accelerated)</label>
-          </div>
-        </div>
-
+      <form onSubmit={(e) => e.preventDefault()}>
         <div className="row">
           <div className="full">
             <h2>Demo mode</h2>
@@ -180,7 +163,7 @@ export const App: React.FC = () => {
               id="autoplay"
               name="autoplay"
               checked={autoplay}
-              onChange={e => setAutoplay(e.target.checked)}
+              onChange={(e) => setAutoplay(e.target.checked)}
             />
             <label htmlFor="autoplay">Update automatically</label>
           </div>
@@ -195,7 +178,7 @@ export const App: React.FC = () => {
               id="theme"
               name="theme"
               value={theme}
-              onChange={e => setTheme(e.target.value)}
+              onChange={(e) => setTheme(e.target.value)}
             >
               <option value="">Default</option>
               <option value="S">S</option>
@@ -210,7 +193,7 @@ export const App: React.FC = () => {
               id="colorScheme"
               name="colorScheme"
               value={colorScheme}
-              onChange={e => setColorScheme(e.target.value)}
+              onChange={(e) => setColorScheme(e.target.value)}
             >
               <option value="">Default</option>
               <option value="light">Light</option>
@@ -247,7 +230,7 @@ export const App: React.FC = () => {
                 name="value"
                 value={value}
                 disabled={autoplay}
-                onChange={e => setValue(e.target.value)}
+                onChange={(e) => setValue(e.target.value)}
               />
             </div>
           </div>
@@ -261,7 +244,7 @@ export const App: React.FC = () => {
                 name="chars"
                 value={chars}
                 disabled={mode === Modes.Words}
-                onChange={e => setChars(e.target.value)}
+                onChange={(e) => setChars(e.target.value)}
               />
             </div>
           </div>
@@ -275,7 +258,7 @@ export const App: React.FC = () => {
                 name="words"
                 value={JSON.stringify(words)}
                 disabled={mode !== Modes.Words}
-                onChange={e => setWords(JSON.parse(e.target.value))}
+                onChange={(e) => setWords(JSON.parse(e.target.value))}
               />
             </div>
           </div>
@@ -290,7 +273,7 @@ export const App: React.FC = () => {
                 value={length}
                 min="1"
                 disabled={mode === Modes.Words}
-                onChange={e => setLength(Math.max(Number(e.target.value), 1))}
+                onChange={(e) => setLength(Math.max(Number(e.target.value), 1))}
               />
             </div>
           </div>
@@ -304,7 +287,7 @@ export const App: React.FC = () => {
                 name="timing"
                 value={timing}
                 min="1"
-                onChange={e => setTiming(Math.max(Number(e.target.value), 1))}
+                onChange={(e) => setTiming(Math.max(Number(e.target.value), 1))}
               />
             </div>
           </div>
@@ -319,7 +302,7 @@ export const App: React.FC = () => {
                 value={padChar}
                 size={1}
                 disabled={mode === Modes.Words}
-                onChange={e => setPadChar(String(e.target.value).slice(0, 1))}
+                onChange={(e) => setPadChar(String(e.target.value).slice(0, 1))}
               />
             </div>
           </div>
@@ -335,7 +318,7 @@ export const App: React.FC = () => {
                 value="auto"
                 checked={padMode === "auto"}
                 disabled={mode === Modes.Words}
-                onChange={e => setPadMode(e.target.value as PadMode)}
+                onChange={(e) => setPadMode(e.target.value as PadMode)}
               />
               <label htmlFor="padMode:auto">
                 <code>auto</code>
@@ -347,7 +330,7 @@ export const App: React.FC = () => {
                 value="start"
                 checked={padMode === "start"}
                 disabled={mode === Modes.Words}
-                onChange={e => setPadMode(e.target.value as PadMode)}
+                onChange={(e) => setPadMode(e.target.value as PadMode)}
               />
               <label htmlFor="padMode:start">
                 <code>start</code>
@@ -359,7 +342,7 @@ export const App: React.FC = () => {
                 value="end"
                 checked={padMode === "end"}
                 disabled={mode === Modes.Words}
-                onChange={e => setPadMode(e.target.value as PadMode)}
+                onChange={(e) => setPadMode(e.target.value as PadMode)}
               />
               <label htmlFor="padMode:end">
                 <code>end</code>
@@ -376,7 +359,7 @@ export const App: React.FC = () => {
                 id="hinge"
                 name="hinge"
                 checked={hinge}
-                onChange={e => setHinge(e.target.checked)}
+                onChange={(e) => setHinge(e.target.checked)}
               />
               <label htmlFor="hinge">Show hinge</label>
             </div>
@@ -393,7 +376,7 @@ export const App: React.FC = () => {
             color: "white",
             border: "none",
             borderRadius: "4px",
-            cursor: "pointer"
+            cursor: "pointer",
           }}
         >
           Show Performance Test (50 Displays)
@@ -408,7 +391,7 @@ export const App: React.FC = () => {
             border: "none",
             borderRadius: "4px",
             cursor: "pointer",
-            marginLeft: "10px"
+            marginLeft: "10px",
           }}
         >
           Show Single Digit

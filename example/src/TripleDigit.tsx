@@ -24,7 +24,7 @@ export const TripleDigit: React.FC = () => {
           justifyContent: "center",
           alignItems: "start",
           height: "100vh",
-          width: "100vw"
+          width: "100vw",
         }}
       >
         <div
@@ -32,7 +32,7 @@ export const TripleDigit: React.FC = () => {
             border: "1px solid #ccc",
             padding: "10px",
             borderRadius: "4px",
-            textAlign: "center"
+            textAlign: "center",
           }}
         >
           <FlapDisplay
@@ -46,7 +46,6 @@ export const TripleDigit: React.FC = () => {
             padChar={" "}
             padMode={"auto"}
             style={{ fontSize: "100px", height: "100px", width: "300px" }}
-            useImproved={true}
           />
         </div>
       </div>
