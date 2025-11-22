@@ -1,10 +1,10 @@
 {
   "name": "react-split-flap-effect",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Split-flap display for React",
-  "author": "jayKayEss",
+  "author": "rj_dev",
   "license": "MIT",
-  "repository": "jayKayEss/react-split-flap-effect",
+  "repository": "rj_dev/react-split-flap-effect",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "jsnext:main": "dist/index.es.js",
@@ -17,8 +17,8 @@
     "test:watch": "react-scripts test --env=jsdom",
     "build": "rollup -c",
     "start": "rollup -c -w",
-    "prepare": "yarn run build",
-    "predeploy": "cd example && yarn install && yarn run build",
+    "prepare": "pnpm run build",
+    "predeploy": "cd example && pnpm install && pnpm run build",
     "deploy": "gh-pages -d example/build"
   },
   "peerDependencies": {
@@ -73,7 +73,7 @@
   ],
   "dependencies": {
     "@types/react-dom": "^19.1.6",
-    "classnames": "^2.5.1"
-  },
-  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
+    "classnames": "^2.5.1",
+    "tslib": "^2.8.1"
+  }
 }

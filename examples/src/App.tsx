@@ -1,22 +1,10 @@
-/* eslint-disable react/jsx-fragments */
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { FlapDisplay, Presets } from "react-split-flap-effect";
 // import "react-split-flap-effect/extras/themes.css";
 import "./index.css";
 import { PerformanceTest } from "./PerformanceTest";
 import { TripleDigit } from "./TripleDigit";
-
-const Words = [
-  "",
-  "Washington",
-  "Baltimore",
-  "Philadelphia",
-  "Newark",
-  "New York",
-  "New Haven",
-  "Providence",
-  "Boston",
-] as const;
+import {default as SimpleIntegration} from "./SimpleIntegration";
 
 const Modes = {
   Numeric: 0,
@@ -29,7 +17,8 @@ type PadMode = "auto" | "start" | "end";
 
 export const App: React.FC = () => {
   const [showPerformanceTest, setShowPerformanceTest] = useState(false);
-  const [showTripleDigit, setShowTripleDigit] = useState(true);
+  const [showTripleDigit, setShowTripleDigit] = useState(false);
+  const [showSimpleIntegration, setShowSimpleIntegration] = useState(false);
   const [autoplay, setAutoplay] = useState(true);
   const [mode, setMode] = useState<Mode>(Modes.Numeric);
   const [theme, setTheme] = useState("");
@@ -103,8 +92,26 @@ export const App: React.FC = () => {
     );
   }
 
+  if (showSimpleIntegration) {
+    return (
+      <div>
+        <button onClick={() => setShowSimpleIntegration(false)}>
+          Back to Demo
+        </button>
+        <SimpleIntegration />
+      </div>
+    );
+  }
+
   if (showTripleDigit) {
-    return <TripleDigit />;
+    return (
+    <div>
+      <button onClick={() => setShowTripleDigit(false)}>
+          Back to Demo
+        </button>
+      <TripleDigit />
+    </div>
+    );
   }
 
   return (
@@ -394,9 +401,26 @@ export const App: React.FC = () => {
             marginLeft: "10px",
           }}
         >
-          Show Single Digit
+          Show Triple Digit
+        </button>
+        <button
+          onClick={() => setShowSimpleIntegration(true)}
+          style={{
+            padding: "10px 20px",
+            fontSize: "16px",
+            backgroundColor: "#007bff",
+            color: "white",
+            border: "none",
+            borderRadius: "4px",
+            cursor: "pointer",
+            marginLeft: "10px",
+          }}
+        >
+          Show Simple Integration
         </button>
       </div>
     </div>
   );
 };
+
+export default App;
