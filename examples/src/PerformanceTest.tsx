@@ -11,6 +11,7 @@ export const PerformanceTest: React.FC = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setValues(prev =>
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         prev.map((_, i) =>
           String(Math.floor(Math.random() * 1000000)).padStart(6, "0")
         )
