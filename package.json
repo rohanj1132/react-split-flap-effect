@@ -2,15 +2,14 @@
   "name": "react-split-flap-effect",
   "version": "1.0.1",
   "description": "Split-flap display for React",
-  "author": "rj_dev",
+  "author": "rohanj1132",
   "license": "MIT",
-  "repository": "rj_dev/react-split-flap-effect",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "jsnext:main": "dist/index.es.js",
   "engines": {
-    "node": ">=8",
-    "npm": ">=5"
+    "node": ">=18",
+    "npm": ">=8"
   },
   "scripts": {
     "test": "cross-env CI=1 react-scripts test --env=jsdom",
